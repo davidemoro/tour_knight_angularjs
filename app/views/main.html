@@ -3,7 +3,7 @@
 
   <div ng-controller="MainCtrl">
 
-    <form ng-submit="init_board()">
+    <form ng-submit="initBoard()">
         <label for="i">i</label>
         <input type="text" id="i" name="j" value="2" ng-model="i" />
 
@@ -13,7 +13,7 @@
     </form>
 
     <div ng-show="i && j && board">
-        <span>Fatte {{len_done_moves()}} su totali {{total_moves()}}</span>
+        <span>Fatte {{lenDoneMoves()}} su totali {{totalMoves()}}</span>
 
         <ul ng-repeat="elems in board">
             <li ng-repeat="elem in elems" style="display: inline;">

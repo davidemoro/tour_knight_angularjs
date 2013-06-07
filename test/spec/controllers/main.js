@@ -23,10 +23,10 @@ describe('Controller: MainCtrl', function () {
   });
   it('i*j == 4', function () {
     expect(scope.i*scope.j).toBe(4);
-    expect(scope.total_moves()).toBe(4);
+    expect(scope.totalMoves()).toBe(4);
   });
   it('board initialization', function () {
-    scope.init_board();
+    scope.initBoard();
     expect(scope.board.length).toBe(2);
     expect(scope.board[0].length).toBe(2);
     expect(scope.board[0][0].i).toBe(0);
