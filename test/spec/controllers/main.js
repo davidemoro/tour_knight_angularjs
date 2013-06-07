@@ -13,6 +13,7 @@ describe('Controller: MainCtrl', function () {
     scope = $rootScope.$new();
     scope.i = 2;
     scope.j = 2;
+    scope.board = [];
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
@@ -23,10 +24,13 @@ describe('Controller: MainCtrl', function () {
   });
   it('i*j == 4', function () {
     expect(scope.i*scope.j).toBe(4);
-    expect(scope.totalMoves()).toBe(4);
+    // board not yet initialized
+    expect(scope.totalMoves()).toBe(0);
   });
   it('board initialization', function () {
+    // board initialization
     scope.initBoard();
+    //expect(scope.totalMoves()).toBe(4);
     expect(scope.board.length).toBe(2);
     expect(scope.board[0].length).toBe(2);
     expect(scope.board[0][0].i).toBe(0);

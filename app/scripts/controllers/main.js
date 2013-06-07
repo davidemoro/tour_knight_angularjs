@@ -4,7 +4,12 @@ angular.module('tourKnightAngularjsApp')
   .controller('MainCtrl', ['$scope', function ($scope) {
 
     $scope.totalMoves = function() {
-        return $scope.i * $scope.j;
+        if (typeof $scope.board === 'object' && $scope.board.length > 0) {
+          return $scope.board.length * $scope.board[0].length;
+        }
+        else {
+          return 0;
+        }
       };
 
     $scope.lenDoneMoves = function() {
