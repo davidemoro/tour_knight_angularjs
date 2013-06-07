@@ -30,7 +30,7 @@ describe('Controller: MainCtrl', function () {
   it('board initialization', function () {
     // board initialization
     scope.initBoard();
-    //expect(scope.totalMoves()).toBe(4);
+    expect(scope.totalMoves()).toBe(4);
     expect(scope.board.length).toBe(2);
     expect(scope.board[0].length).toBe(2);
     expect(scope.board[0][0].i).toBe(0);
