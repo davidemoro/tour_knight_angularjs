@@ -1,9 +1,26 @@
 <div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+  <h1>Tour knight</h1>
+
+  <div ng-controller="MainCtrl">
+
+    <form ng-submit="init_board()">
+        <label for="i">i</label>
+        <input type="text" id="i" name="j" value="2" ng-model="i" />
+
+        <label for="j">j</label>
+        <input type="text" id="j" name="j" value="2" ng-model="j" />
+        <input type="submit" value="Calcola" />
+    </form>
+
+    <div ng-show="i && j && board">
+        <span>Fatte {{len_done_moves()}} su totali {{total_moves()}}</span>
+
+        <ul ng-repeat="elems in board">
+            <li ng-repeat="elem in elems" style="display: inline;">
+                <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked" />
+            </li>
+        </ul>
+    </div>
+
+  </div>
 </div>
