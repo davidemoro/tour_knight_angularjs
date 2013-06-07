@@ -34,9 +34,9 @@ angular.module('tourKnightAngularjsApp')
             for(j=0; j<max_j; j++) {
                 row_results.push({i:i, j:j, checked:""});
             }
-        results.push(row_results);
+            results.push(row_results);
         }
-    $scope.board = results;
+        $scope.board = results;
     };
 
   }]);
