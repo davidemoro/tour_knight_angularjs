@@ -18,6 +18,7 @@
         <ul ng-repeat="elems in board">
             <li ng-repeat="elem in elems" style="display: inline;">
                 <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked" />
+                <span ng-click="clickElem(elem.i, elem.j)">click</span>
             </li>
         </ul>
     </div>

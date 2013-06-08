@@ -30,8 +30,12 @@ describe('Controller: MainCtrl', function () {
   it('board initialization', function () {
     // board initialization
     scope.initBoard();
+
+    // total moves
     expect(scope.totalMoves()).toBe(4);
     expect(scope.board.length).toBe(2);
+
+    // board coords
     expect(scope.board[0].length).toBe(2);
     expect(scope.board[0][0].i).toBe(0);
     expect(scope.board[0][0].j).toBe(0);
@@ -41,6 +45,43 @@ describe('Controller: MainCtrl', function () {
     expect(scope.board[1][0].j).toBe(0);
     expect(scope.board[1][1].i).toBe(1);
     expect(scope.board[1][1].j).toBe(1);
+
+    // values
+    expect(scope.board[0][0].value).toBe(0);
+    expect(scope.board[0][1].value).toBe(0);
+
+  });
+  it('board initialization and euristics values init', function () {
+    // board initialization
+    scope.i = 8;
+    scope.j = 8;
+    scope.initBoard();
+    // values
+    expect(scope.board[0][0].value).toBe(2);
+    expect(scope.board[0][4].value).toBe(4);
+    expect(scope.board[4][4].value).toBe(8);
+  });
+  it('board click elems', function () {
+    // board initialization
+    scope.i = 8;
+    scope.j = 8;
+    scope.initBoard();
+    // values
+    expect(scope.board[0][0].value).toBe(2);
+    expect(scope.board[1][2].value).toBe(6);
+    expect(scope.doneMoves.length).toBe(0);
+
+    // click on 1-2
+    scope.clickElem(1, 2);
+    expect(scope.board[0][0].value).toBe(1);
+    expect(scope.board[1][2].value).toBe(5);
+    expect(scope.doneMoves.length).toBe(1);
+
+    // undo click on 1-2
+    scope.clickElem(1, 2);
+    expect(scope.board[0][0].value).toBe(2);
+    expect(scope.board[1][2].value).toBe(6);
+    expect(scope.doneMoves.length).toBe(0);
 
   });
 });
