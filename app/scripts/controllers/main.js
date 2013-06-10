@@ -39,6 +39,23 @@ angular.module('tourKnightAngularjsApp')
         return count;
       };
 
+    var iterBoard = function(func) {
+        var indexI, indexJ;
+        for(indexI=0; indexI<$scope.board.length; indexI++) {
+          for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+            func(indexI, indexJ);
+          }
+        }
+      };
+
+    var setClickable = function (i, j) {
+        $scope.board[i][j].clickable = true;
+      };
+
+    var unsetClickable = function (i, j) {
+        $scope.board[i][j].clickable = false;
+      };
+
     $scope.maxI = 0;
     $scope.maxJ = 0;
 
@@ -107,11 +124,7 @@ angular.module('tourKnightAngularjsApp')
             return;
           }
           // clear all clickable elems
-          for(indexI=0; indexI<$scope.board.length; indexI++) {
-            for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
-              $scope.board[indexI][indexJ].clickable = false;
-            }
-          }
+          iterBoard(unsetClickable);
 
           $scope.board[i][j].current = true;
           // update value
@@ -138,22 +151,12 @@ angular.module('tourKnightAngularjsApp')
             }
             else {
               // all elems clickable
-              $scope.initBoard()
-//              for(indexI=0; indexI<$scope.board.length; indexI++) {
-//                for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
-//                  $scope.board[indexI][indexJ].clickable = true;
-//                }
-//              }
+              iterBoard(setClickable);
             }
           }
           else {
             // all elems clickable
-            $scope.initBoard()
-//            for(indexI=0; indexI<$scope.board.length; indexI++) {
-//              for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
-//                $scope.board[indexI][indexJ].clickable = true;
-//              }
-//            }
+            iterBoard(setClickable);
           }
         }
 
