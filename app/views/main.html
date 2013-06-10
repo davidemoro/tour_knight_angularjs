@@ -21,6 +21,13 @@
                 <span ng-click="clickElem(elem.i, elem.j)">click</span>
             </li>
         </ul>
+
+        <div ng-show="doneMoves.length">
+            <h2>Done moves</h2>
+            <ul ng-repeat="move in doneMoves">
+                <li>{{move[0]}}, {{move[1]}}</li>
+            </ul>
+        </div>
     </div>
 
   </div>
