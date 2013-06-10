@@ -110,4 +110,25 @@ describe('Controller: MainCtrl', function () {
     expect(scope.board[7][7].clickable).toBe(false);
     expect(scope.doneMoves.length).toBe(1);
   });
+  it('board values matrix (current)', function () {
+    // board initialization
+    scope.i = 8;
+    scope.j = 8;
+    scope.initBoard();
+
+    // click on 1-2
+    scope.clickElem(1, 2);
+    expect(scope.board[1][2].current).toBe(true);
+    expect(scope.board[0][0].current).toBe(false);
+    
+    // click on 0-0
+    scope.clickElem(0, 0);
+    expect(scope.board[0][0].current).toBe(true);
+    expect(scope.board[1][2].current).toBe(false);
+
+    // click on 0-0
+    scope.clickElem(0, 0);
+    expect(scope.board[1][2].current).toBe(true);
+    expect(scope.board[0][0].current).toBe(false);
+  });
 });
