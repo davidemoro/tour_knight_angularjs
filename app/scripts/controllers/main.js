@@ -99,6 +99,12 @@ angular.module('tourKnightAngularjsApp')
           if (! $scope.board[i][j].clickable) {
             return;
           }
+          // clear all clickable elems
+          for(indexI=0; indexI<$scope.board.length; indexI++) {
+            for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+              $scope.board[indexI][indexJ].clickable = false;
+            }
+          }
 
           $scope.board[i][j].current = true;
           // update value
@@ -138,7 +144,7 @@ angular.module('tourKnightAngularjsApp')
           updateJ = j + moves[index][1];
           if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0 && ($scope.board[updateI][updateJ].value + updateValue) >= 0) {
             $scope.board[updateI][updateJ].value += updateValue;
-            if (updateValue === 1) {
+            if (updateValue === -1) {
               $scope.board[updateI][updateJ].clickable = true;
             }
           }

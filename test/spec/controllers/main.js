@@ -75,6 +75,7 @@ describe('Controller: MainCtrl', function () {
     scope.clickElem(1, 2);
     expect(scope.board[0][0].value).toBe(1);
     expect(scope.board[1][2].value).toBe(0);
+    expect(scope.board[1][2].clickable).toBe(true);
     expect(scope.doneMoves.length).toBe(1);
 
     // undo click on 1-2
@@ -90,21 +91,23 @@ describe('Controller: MainCtrl', function () {
     scope.j = 8;
     scope.initBoard();
 
+    expect(scope.board[7][7].clickable).toBe(true);
+    expect(scope.board[0][0].value).toBe(2);
+
     // click on 1-2
     scope.clickElem(1, 2);
     expect(scope.board[0][0].value).toBe(1);
     expect(scope.board[1][2].value).toBe(0);
+    expect(scope.board[1][2].clickable).toBe(true);
+    expect(scope.board[7][7].clickable).toBe(false);
     expect(scope.doneMoves.length).toBe(1);
     
-    // click on 2-1
+    // click on 2-1 (not clickable, nothing has changed)
     scope.clickElem(2, 1);
-    expect(scope.board[2][1].value).toBe(0);
-    expect(scope.board[0][0].value).toBe(0); // game over, 0-0 no more available
-
-    // click on 0-0, you loose
-    scope.clickElem(0, 0);
+    expect(scope.board[0][0].value).toBe(1);
     expect(scope.board[1][2].value).toBe(0);
-    expect(scope.board[2][1].value).toBe(0);
-    expect(scope.doneMoves.length).toBe(3);
+    expect(scope.board[1][2].clickable).toBe(true);
+    expect(scope.board[7][7].clickable).toBe(false);
+    expect(scope.doneMoves.length).toBe(1);
   });
 });
