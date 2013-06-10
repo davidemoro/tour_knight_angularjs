@@ -131,4 +131,41 @@ describe('Controller: MainCtrl', function () {
     expect(scope.board[1][2].current).toBe(true);
     expect(scope.board[0][0].current).toBe(false);
   });
+  it('board loose', function () {
+    // board initialization
+    scope.i = 8;
+    scope.j = 8;
+    scope.initBoard();
+    expect(scope.board[0][0].value).toBe(2);
+
+    // click on 1-2
+    scope.clickElem(1, 2);
+    expect(scope.board[0]02].value).toBe(1);
+    
+    // click on 3-3
+    scope.clickElem(3, 3);
+    expect(scope.board[0][0].value).toBe(2);
+    
+    // click on 2-1
+    scope.clickElem(2, 1);
+    expect(scope.board[0][0].value).toBe(2);
+
+    // click on 2-1 (last click)
+    scope.clickElem(0, 0);
+    expect(scope.board[2][1].value).toBe(-1);
+    expect(scope.board[1][2].value).toBe(-1);
+    expect(scope.board[0][0].value).toBe(-1);
+    expect(scope.doneMoves.length).toBe(4)
+
+    // you loose, you need to come back
+    scope.clickElem(0, 0);
+    scope.clickElem(2, 1);
+    scope.clickElem(3, 3);
+    expect(scope.doneMoves.length).toBe(1)
+    expect(scope.board[1][2].current).toBe(true);
+    expect(scope.board[3][3].current).toBe(false);
+    expect(scope.board[2][1].current).toBe(false);
+    expect(scope.board[0][0].current).toBe(false);
+
+  });
 });
