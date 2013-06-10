@@ -138,20 +138,22 @@ angular.module('tourKnightAngularjsApp')
             }
             else {
               // all elems clickable
-              for(indexI=0; indexI<$scope.board.length; indexI++) {
-                for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
-                  $scope.board[indexI][indexJ].clickable = true;
-                }
-              }
+              $scope.initBoard()
+//              for(indexI=0; indexI<$scope.board.length; indexI++) {
+//                for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+//                  $scope.board[indexI][indexJ].clickable = true;
+//                }
+//              }
             }
           }
           else {
             // all elems clickable
-            for(indexI=0; indexI<$scope.board.length; indexI++) {
-              for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
-                $scope.board[indexI][indexJ].clickable = true;
-              }
-            }
+            $scope.initBoard()
+//            for(indexI=0; indexI<$scope.board.length; indexI++) {
+//              for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+//                $scope.board[indexI][indexJ].clickable = true;
+//              }
+//            }
           }
         }
 
