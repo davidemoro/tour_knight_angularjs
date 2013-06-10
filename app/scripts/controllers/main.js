@@ -145,7 +145,7 @@ angular.module('tourKnightAngularjsApp')
         }
 
         // update doneMoves
-        if (updateValue === 1) {
+        if (updateValue === -1) {
           // append i,j
           $scope.doneMoves.push([i, j]);
         }

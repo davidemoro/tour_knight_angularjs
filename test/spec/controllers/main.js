@@ -74,7 +74,7 @@ describe('Controller: MainCtrl', function () {
     // click on 1-2
     scope.clickElem(1, 2);
     expect(scope.board[0][0].value).toBe(1);
-    expect(scope.board[1][2].value).toBe(5);
+    expect(scope.board[1][2].value).toBe(0);
     expect(scope.doneMoves.length).toBe(1);
 
     // undo click on 1-2
