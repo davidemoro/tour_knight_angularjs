@@ -15,7 +15,7 @@ angular.module('tourKnightAngularjsApp')
       [-2, -1]
     ];
 
-    var possibleMoves = function(i, j) {
+    var possibleMoves = function(i, j, init) {
         var maxI=$scope.maxI,
             maxJ=$scope.maxJ,
             moveI,
@@ -26,7 +26,14 @@ angular.module('tourKnightAngularjsApp')
           moveI = i + moves[index][0];
           moveJ = j + moves[index][1];
           if (moveI < maxI && moveI >=0 && moveJ < maxJ && moveJ >= 0) {
-            count++;
+            if (init) {
+              count++;
+            }
+            else {
+              if ($scope.board[moveI][moveJ].value >= 0) {
+                count++;
+              }
+            }
           }
         }
         return count;
@@ -74,7 +81,7 @@ angular.module('tourKnightAngularjsApp')
         for(i=0; i<maxI; i++) {
           rowResults = [];
           for(j=0; j<maxJ; j++) {
-            rowResults.push({i:i, j:j, checked:'', value:possibleMoves(i, j), clickable:true, current:false});
+            rowResults.push({i:i, j:j, checked:'', value:possibleMoves(i, j, true), clickable:true, current:false});
           }
           results.push(rowResults);
         }
@@ -108,7 +115,7 @@ angular.module('tourKnightAngularjsApp')
 
           $scope.board[i][j].current = true;
           // update value
-          $scope.board[i][j].value = 0;
+          $scope.board[i][j].value = -1;
         }
         else {
           // unchecked action, we should increment the euristic value
@@ -120,9 +127,23 @@ angular.module('tourKnightAngularjsApp')
             }
 
             $scope.board[i][j].current = false;
-            $scope.board[lastMove[0]][lastMove[1]].current = true;
-            $scope.board[lastMove[0]][lastMove[1]].value = 0;
-            $scope.board[lastMove[0]][lastMove[1]].value = possibleMoves(lastMove[0], lastMove[1]);
+            // remove i,j
+            $scope.doneMoves.pop();
+            doneMovesLength = $scope.doneMoves.length;
+            lastMove = doneMovesLength ? $scope.doneMoves[doneMovesLength-1] : undefined;
+
+            if (lastMove) {
+              $scope.board[lastMove[0]][lastMove[1]].current = true;
+              $scope.board[lastMove[0]][lastMove[1]].value = -1;
+            }
+            else {
+              // all elems clickable
+              for(indexI=0; indexI<$scope.board.length; indexI++) {
+                for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+                  $scope.board[indexI][indexJ].clickable = true;
+                }
+              }
+            }
           }
           else {
             // all elems clickable
@@ -161,10 +182,8 @@ angular.module('tourKnightAngularjsApp')
           $scope.doneMoves.push([i, j]);
         }
         else {
-          // remove i,j
-          $scope.doneMoves.pop();
           // update value
-          $scope.board[i][j].value = possibleMoves(i, j);
+          $scope.board[i][j].value = possibleMoves(i, j, false);
         }
       };
 

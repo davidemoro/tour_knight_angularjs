@@ -74,7 +74,7 @@ describe('Controller: MainCtrl', function () {
     // click on 1-2
     scope.clickElem(1, 2);
     expect(scope.board[0][0].value).toBe(1);
-    expect(scope.board[1][2].value).toBe(0);
+    expect(scope.board[1][2].value).toBe(-1);
     expect(scope.board[1][2].clickable).toBe(true);
     expect(scope.doneMoves.length).toBe(1);
 
@@ -97,7 +97,7 @@ describe('Controller: MainCtrl', function () {
     // click on 1-2
     scope.clickElem(1, 2);
     expect(scope.board[0][0].value).toBe(1);
-    expect(scope.board[1][2].value).toBe(0);
+    expect(scope.board[1][2].value).toBe(-1);
     expect(scope.board[1][2].clickable).toBe(true);
     expect(scope.board[7][7].clickable).toBe(false);
     expect(scope.doneMoves.length).toBe(1);
@@ -105,7 +105,7 @@ describe('Controller: MainCtrl', function () {
     // click on 2-1 (not clickable, nothing has changed)
     scope.clickElem(2, 1);
     expect(scope.board[0][0].value).toBe(1);
-    expect(scope.board[1][2].value).toBe(0);
+    expect(scope.board[1][2].value).toBe(-1);
     expect(scope.board[1][2].clickable).toBe(true);
     expect(scope.board[7][7].clickable).toBe(false);
     expect(scope.doneMoves.length).toBe(1);
