@@ -8,10 +8,14 @@ display: inline;
 display: none;
 }
 
-.elem-clickable {
+.clickable-true {
 color: yellow;
 }
 
-.elem-current {
+.selected-1 {
+color: green;
+}
+
+.current-true {
 color: red !important;
 }
