@@ -228,4 +228,18 @@ describe('Controller: MainCtrl', function () {
     scope.initBoard();
     expect(scope.doneMoves.length).toBe(0);
   });
+  it('board autosolve', function () {
+    // board initialization
+    scope.i = 5;
+    scope.j = 5;
+    scope.initBoard();
+
+    scope.clickElem(1, 2);
+    scope.clickElem(3, 3);
+    expect(scope.doneMoves.length).toBe(2);
+    expect(scope.win()).toBe(false);
+
+    scope.solve();
+    expect(scope.doneMoves.length).toBe(25);
+    expect(scope.win()).toBe(true);
 });
