@@ -112,6 +112,7 @@ angular.module('tourKnightAngularjsApp')
           results.push(rowResults);
         }
         $scope.board = results;
+        $scope.doneMoves = [];
       };
 
     $scope.clickElem = function(i, j) {

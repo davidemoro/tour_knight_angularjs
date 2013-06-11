@@ -174,8 +174,6 @@ describe('Controller: MainCtrl', function () {
     scope.j = 5;
     scope.initBoard();
 
-    // click on 1-2
-
     var moves = [[0, 0],
       [2, 1],
       [4, 0],
@@ -215,5 +213,19 @@ describe('Controller: MainCtrl', function () {
     expect(scope.doneMoves.length).toBe(25);
     expect(scope.win()).toBe(true);
 
+  });
+  it('board reset', function () {
+    // board initialization
+    scope.i = 5;
+    scope.j = 5;
+    scope.initBoard();
+
+    scope.clickElem(1, 2);
+    scope.clickElem(3, 3);
+    expect(scope.doneMoves.length).toBe(2);
+
+    // re-init board
+    scope.initBoard();
+    expect(scope.doneMoves.length).toBe(0);
   });
 });
