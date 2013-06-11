@@ -110,8 +110,6 @@ angular.module('tourKnightAngularjsApp')
             doneMovesLength=$scope.doneMoves.length,
             index=0,
             lastMove = doneMovesLength ? $scope.doneMoves[doneMovesLength-1] : undefined,
-            indexI,
-            indexJ,
             updateValue,
             updateI,
             updateJ;

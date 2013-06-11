@@ -1,1 +1,17 @@
 @import "compass_twitter_bootstrap";
+
+.board > li {
+display: inline;
+}
+
+.board input {
+display: none;
+}
+
+.elem-clickable {
+color: yellow;
+}
+
+.elem-current {
+color: red !important;
+}
