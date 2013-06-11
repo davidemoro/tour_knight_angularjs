@@ -176,37 +176,44 @@ describe('Controller: MainCtrl', function () {
 
     // click on 1-2
 
+    var moves = [[0, 0],
+      [2, 1],
+      [4, 0],
+      [3, 2],
+      [4, 4],
+      [2, 3],
+      [0, 4],
+      [1, 2],
+      [2, 0],
+      [4, 1],
+      [3, 3],
+      [1, 4],
+      [0, 2],
+      [1, 0],
+      [3, 1],
+      [4, 3],
+      [2, 4],
+      [0, 3],
+      [1, 1],
+      [3, 0],
+      [4, 2],
+      [3, 4],
+      [2, 2],
+      [0, 1],
+      [1, 3]
+    ]
 
+    for(var i=0; i<moves.length-1; i++) {
+      scope.clickElem(moves[i][0], moves[i][1]);
+    }
 
-    0, 0
-    2, 1
-    4, 0
-    3, 2
-    4, 4
-    2, 3
-    0, 4
-    1, 2
-    2, 0
-    4, 1
-    3, 3
-    1, 4
-    0, 2
-    1, 0
-    3, 1
-    4, 3
-    2, 4
-    0, 3
-    1, 1
-    3, 0
-    4, 2
-    3, 4
-    2, 2
-    0, 1
-    1, 3
+    expect(scope.doneMoves.length).toBe(24);
+    expect(scope.win()).toBe(false);
 
+    // last move before win
+    scope.clickElem(moves[moves.length-1][0], moves[moves.length-1][1]);
+    expect(scope.doneMoves.length).toBe(25);
+    expect(scope.win()).toBe(true);
 
-
-    scope.clickElem(1, 2);
-    expect(scope.board[0][0].value).toBe(1);
   });
 });

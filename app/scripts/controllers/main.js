@@ -80,6 +80,15 @@ angular.module('tourKnightAngularjsApp')
         return lenChecked;
       };
 
+    $scope.win = function() {
+        var lenDoneMoves = $scope.lenDoneMoves(),
+            totalMoves = $scope.totalMoves();
+        if (lenDoneMoves && totalMoves) {
+          return lenDoneMoves === totalMoves;
+        }
+        return false;
+      };
+
     $scope.doneMoves = [];
 
     $scope.board = [];
