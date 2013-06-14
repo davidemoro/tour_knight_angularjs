@@ -228,6 +228,72 @@ describe('Controller: MainCtrl', function () {
     scope.initBoard();
     expect(scope.doneMoves.length).toBe(0);
   });
+  it('board fail and back', function () {
+    // board initialization
+    scope.i = 5;
+    scope.j = 5;
+    scope.initBoard();
+
+    var moves = [
+      [0, 0],
+      [1, 2],
+      [2, 0],
+      [0, 1],
+      [2, 2],
+      [1, 0],
+      [0, 2],
+      [1, 4],
+      [3, 3],
+      [2, 1],
+      [1, 3],
+      [3, 2],
+      [2, 4],
+      [0, 3],
+      [1, 1],
+      [2, 3],
+      [0, 4]
+    ]
+
+    for(var i=0; i<moves.length; i++) {
+      scope.clickElem(moves[i][0], moves[i][1]);
+    }
+
+    expect(scope.doneMoves.length).toBe(17);
+    expect(scope.win()).toBe(false);
+
+    // no more moves
+    expect(scope.board[0][4].clickable).toBe(true);
+    expect(scope.board[0][4].current).toBe(true);
+    expect(scope.board[1][2].clickable).toBe(false);
+    expect(scope.board[2][3].clickable).toBe(false);
+
+    // we can just come back and uncheck the last move
+    scope.clickElem(0,4)
+    expect(scope.board[2][3].current).toBe(true);
+    expect(scope.board[0][4].current).toBe(false);
+
+    expect(scope.board[1][2].clickable).toBe(false);
+    expect(scope.board[0][4].clickable).toBe(true);
+    expect(scope.board[3][1].clickable).toBe(true);
+    expect(scope.board[4][2].clickable).toBe(true);
+    expect(scope.board[4][4].clickable).toBe(true);
+
+
+  });
+  it('board reset', function () {
+    // board initialization
+    scope.i = 5;
+    scope.j = 5;
+    scope.initBoard();
+
+    scope.clickElem(1, 2);
+    scope.clickElem(3, 3);
+    expect(scope.doneMoves.length).toBe(2);
+
+    // re-init board
+    scope.initBoard();
+    expect(scope.doneMoves.length).toBe(0);
+  });
   /*
   it('board autosolve', function () {
     // board initialization
