@@ -4,10 +4,11 @@
   <div ng-controller="MainCtrl">
 
     <form ng-submit="initBoard()">
-        <label for="i">i</label>
+        <p>Enter the board dimension (eg: 8 x 8)</p>
+        <label for="i">Rows</label>
         <input type="text" id="i" name="j" value="2" ng-model="i" />
 
-        <label for="j">j</label>
+        <label for="j">Colums</label>
         <input type="text" id="j" name="j" value="2" ng-model="j" />
         <input type="submit" value="Calcola" />
     </form>
@@ -21,6 +22,8 @@
                 <span class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}" ng-click="elem.clickable && clickElem(elem.i, elem.j)">click</span>
             </li>
         </ul>
+
+        <strong ng-show="win()">You win!</strong>
 
         <div ng-show="doneMoves.length">
             <h2>Done moves</h2>
