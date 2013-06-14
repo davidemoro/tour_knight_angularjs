@@ -4,17 +4,6 @@
 display: none;
 }
 
-.clickable-true {
-    background-color: yellow;
-}
-
-.selected-1 {
-    background-color: green;
-}
-
-.current-true {
-    background-color: red !important;
-}
 
 a {
     color:#000;
@@ -38,6 +27,21 @@ a {
     text-align:center;
     vertical-align:middle;
     width:80px;
+}
+
+#chess_board td.clickable-true {
+    background-color: yellow;
+    background: yellow !important;
+}
+
+#chess_board td.selected-1 {
+    background-color: green;
+    background: green !important;
+}
+
+#chess_board td.current-true {
+    background-color: red !important;
+    background: none;
 }
 #chess_board tr:nth-child(odd) td:nth-child(even),
 #chess_board tr:nth-child(even) td:nth-child(odd) {

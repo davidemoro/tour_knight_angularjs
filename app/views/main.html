@@ -3,6 +3,9 @@
 
   <div ng-controller="MainCtrl">
 
+    <label for="name">What's your name?</label> <input id="name" name="name" type="text" placeholder="Enter your name" ng-model="name" />
+    <span ng-show="name">Hi {{name}}, let's play!!</span>
+
     <form ng-submit="initBoard()">
         <p>Enter the board dimension (eg: 8 x 8)</p>
         <label for="i">Rows</label>
@@ -14,17 +17,15 @@
     </form>
 
     <div ng-show="i && j && board">
-        <span>Fatte {{lenDoneMoves()}} su totali {{totalMoves()}}</span>
+        <span>Done {{lenDoneMoves()}} total {{totalMoves()}}</span>
 
         <!-- Credits chessboard http://designindevelopment.com/css/css3-chess-board -->
         <table id="chess_board" cellpadding="0" cellspacing="0">
             <tr ng-repeat="elems in board" class="board">
-                <td ng-repeat="elem in elems">
+                <td ng-repeat="elem in elems"
+                    class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}"
+                    ng-click="elem.clickable && clickElem(elem.i, elem.j)">
                     <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked" />
-                    <span class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}"
-                          ng-click="elem.clickable && clickElem(elem.i, elem.j)">
-                        click
-                    </span>
                 </td>
             </tr>
         </table>
