@@ -16,12 +16,18 @@
     <div ng-show="i && j && board">
         <span>Fatte {{lenDoneMoves()}} su totali {{totalMoves()}}</span>
 
-        <ul ng-repeat="elems in board" class="board">
-            <li ng-repeat="elem in elems">
-                <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked" />
-                <span class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}" ng-click="elem.clickable && clickElem(elem.i, elem.j)">click</span>
-            </li>
-        </ul>
+        <!-- Credits chessboard http://designindevelopment.com/css/css3-chess-board -->
+        <table id="chess_board" cellpadding="0" cellspacing="0">
+            <tr ng-repeat="elems in board" class="board">
+                <td ng-repeat="elem in elems">
+                    <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked" />
+                    <span class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}"
+                          ng-click="elem.clickable && clickElem(elem.i, elem.j)">
+                        click
+                    </span>
+                </td>
+            </tr>
+        </table>
 
         <strong ng-show="win()">You win!</strong>
 
