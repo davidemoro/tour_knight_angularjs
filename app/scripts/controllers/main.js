@@ -137,6 +137,32 @@ angular.module('tourKnightAngularjsApp')
           $scope.board[i][j].current = true;
           // update value
           $scope.board[i][j].value = -1;
+          // update checked status
+          $scope.board[i][j].checked = checked ? false : true;
+  
+          // update as clickable
+          $scope.board[i][j].clickable = true;
+  
+          // update euristic values of other positions
+          for (index=0; index<moves.length; index++) {
+            updateI = i + moves[index][0];
+            updateJ = j + moves[index][1];
+            if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
+              if (($scope.board[updateI][updateJ].value + updateValue) >= 0) {
+                $scope.board[updateI][updateJ].value += updateValue;
+              }
+              if (updateValue === -1) {
+                if ($scope.board[updateI][updateJ].value >= 0) {
+                  $scope.board[updateI][updateJ].clickable = true;
+                }
+                $scope.board[updateI][updateJ].current = false;
+              }
+            }
+          }
+
+        // update doneMoves
+        // append i,j
+        $scope.doneMoves.push([i, j]);
         }
         else {
           // unchecked action, we should increment the euristic value
@@ -148,58 +174,56 @@ angular.module('tourKnightAngularjsApp')
             }
 
             $scope.board[i][j].current = false;
+            $scope.board[i][j].checked = false;
+            $scope.board[i][j].clickable = true;
+            $scope.board[i][j].value = possibleMoves(i, j, false);
             // remove i,j
             $scope.doneMoves.pop();
             doneMovesLength = $scope.doneMoves.length;
             lastMove = doneMovesLength ? $scope.doneMoves[doneMovesLength-1] : undefined;
 
+            // increment near positions of unclicked 
             if (lastMove) {
-              $scope.board[lastMove[0]][lastMove[1]].current = true;
-              $scope.board[lastMove[0]][lastMove[1]].value = -1;
+              for (index=0; index<moves.length; index++) {
+                updateI = i + moves[index][0];
+                updateJ = j + moves[index][1];
+                if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
+                  if ($scope.board[updateI][updateJ].value !== -1) {
+                    $scope.board[updateI][updateJ].value += 1;
+                    $scope.board[updateI][updateJ].clickable = false;
+                  }
+                }
+              }
+
+              i = lastMove[0];
+              j = lastMove[1];
+              $scope.board[i][j].current = true;
+              $scope.board[i][j].value = -1;
+              $scope.board[i][j].checked = true;
+              $scope.board[i][j].clickable = true;
+
+              for (index=0; index<moves.length; index++) {
+                updateI = i + moves[index][0];
+                updateJ = j + moves[index][1];
+                if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
+                  if ($scope.board[updateI][updateJ].value >= 0) {
+                    $scope.board[updateI][updateJ].clickable = true;
+                  }
+                }
+              }
             }
             else {
               // all elems clickable
-              iterBoard(setClickable);
+              $scope.initBoard();
             }
           }
           else {
             // all elems clickable
-            iterBoard(setClickable);
+            $scope.initBoard();
           }
         }
 
-        // update checked status
-        $scope.board[i][j].checked = checked ? false : true;
 
-        // update as clickable
-        $scope.board[i][j].clickable = true;
-
-        // update euristic values of other positions
-        for (index=0; index<moves.length; index++) {
-          updateI = i + moves[index][0];
-          updateJ = j + moves[index][1];
-          if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
-            if (($scope.board[updateI][updateJ].value + updateValue) >= 0) {
-              $scope.board[updateI][updateJ].value += updateValue;
-            }
-            if (updateValue === -1) {
-              if ($scope.board[updateI][updateJ].value >= 0) {
-                $scope.board[updateI][updateJ].clickable = true;
-              }
-              $scope.board[updateI][updateJ].current = false;
-            }
-          }
-        }
-
-        // update doneMoves
-        if (updateValue === -1) {
-          // append i,j
-          $scope.doneMoves.push([i, j]);
-        }
-        else {
-          // update value
-          $scope.board[i][j].value = possibleMoves(i, j, false);
-        }
       };
 
   }]);
