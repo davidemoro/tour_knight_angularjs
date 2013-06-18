@@ -280,6 +280,54 @@ describe('Controller: MainCtrl', function () {
 
 
   });
+  it('board fail and back 2', function () {
+    // board initialization
+    scope.i = 5;
+    scope.j = 5;
+    scope.initBoard();
+
+    var moves = [
+        [0, 0],
+        [1, 2],
+        [2, 0],
+        [0, 1],
+        [2, 2],
+        [1, 0],
+        [3, 1],
+        [2, 3],
+        [1, 1],
+        [3, 0],
+        [4, 2],
+        [2, 1],
+        [0, 2],
+        [1, 4],
+        [3, 3],
+        [4, 1]
+    ]
+
+    for(var i=0; i<moves.length; i++) {
+      scope.clickElem(moves[i][0], moves[i][1]);
+    }
+
+    expect(scope.doneMoves.length).toBe(16);
+    expect(scope.win()).toBe(false);
+
+    // no more moves
+    expect(scope.board[2][0].clickable).toBe(false);
+    expect(scope.board[2][2].clickable).toBe(false);
+    expect(scope.board[3][3].clickable).toBe(false);
+
+    // we can just come back and uncheck the last move
+    scope.clickElem(4,1)
+    expect(scope.board[3][3].current).toBe(true);
+    expect(scope.board[4][1].current).toBe(false);
+
+    expect(scope.board[4][1].clickable).toBe(true);
+    expect(scope.board[2][0].clickable).toBe(false);
+    expect(scope.board[2][2].clickable).toBe(false);
+    expect(scope.board[1][4].clickable).toBe(false);
+
+  });
   it('board reset', function () {
     // board initialization
     scope.i = 5;
