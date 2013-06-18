@@ -48,10 +48,6 @@ angular.module('tourKnightAngularjsApp')
         }
       };
 
-    var setClickable = function (i, j) {
-        $scope.board[i][j].clickable = true;
-      };
-
     var unsetClickable = function (i, j) {
         $scope.board[i][j].clickable = false;
       };
@@ -139,10 +135,10 @@ angular.module('tourKnightAngularjsApp')
           $scope.board[i][j].value = -1;
           // update checked status
           $scope.board[i][j].checked = checked ? false : true;
-  
+
           // update as clickable
           $scope.board[i][j].clickable = true;
-  
+
           // update euristic values of other positions
           for (index=0; index<moves.length; index++) {
             updateI = i + moves[index][0];
@@ -160,9 +156,9 @@ angular.module('tourKnightAngularjsApp')
             }
           }
 
-        // update doneMoves
-        // append i,j
-        $scope.doneMoves.push([i, j]);
+          // update doneMoves
+          // append i,j
+          $scope.doneMoves.push([i, j]);
         }
         else {
           // unchecked action, we should increment the euristic value
