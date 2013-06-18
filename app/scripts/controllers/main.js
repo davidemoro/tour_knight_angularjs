@@ -20,11 +20,11 @@ angular.module('tourKnightAngularjsApp')
             maxJ=$scope.maxJ,
             moveI,
             moveJ,
-            list_length1,
+            list_length,
             count = 0;
 
-        list_length1 = moves.length;
-        for(var index=0; index<list_length1; index++) {
+        list_length = moves.length;
+        for(var index=0; index<list_length; index++) {
           moveI = i + moves[index][0];
           moveJ = j + moves[index][1];
           if (moveI < maxI && moveI >=0 && moveJ < maxJ && moveJ >= 0) {
@@ -128,7 +128,6 @@ angular.module('tourKnightAngularjsApp')
         // check or uncheck action?
         if (! checked) {
           // checked action, we should decrement the euristic value
-          updateValue = -1;
           if (! $scope.board[i][j].clickable) {
             return;
           }
@@ -149,15 +148,13 @@ angular.module('tourKnightAngularjsApp')
             updateI = i + moves[index][0];
             updateJ = j + moves[index][1];
             if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
-              if (($scope.board[updateI][updateJ].value + updateValue) >= 0) {
-                $scope.board[updateI][updateJ].value += updateValue;
-              }
-              if (updateValue === -1) {
-                if ($scope.board[updateI][updateJ].value >= 0) {
-                  $scope.board[updateI][updateJ].clickable = true;
+              if ($scope.board[updateI][updateJ].value >= 0) {
+                $scope.board[updateI][updateJ].clickable = true;
+                if ($scope.board[updateI][updateJ].value >= 1) {
+                  $scope.board[updateI][updateJ].value -= 1;
                 }
-                $scope.board[updateI][updateJ].current = false;
               }
+              $scope.board[updateI][updateJ].current = false;
             }
           }
 
@@ -167,7 +164,6 @@ angular.module('tourKnightAngularjsApp')
         }
         else {
           // unchecked action, we should increment the euristic value
-          updateValue = 1;
           if (lastMove) {
             // check unclickable (i,j in the last position of $scope.doneMoves)
             if (lastMove[0] !== i && lastMove[1] !== j) {
