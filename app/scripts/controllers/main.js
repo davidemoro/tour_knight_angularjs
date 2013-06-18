@@ -20,9 +20,11 @@ angular.module('tourKnightAngularjsApp')
             maxJ=$scope.maxJ,
             moveI,
             moveJ,
+            list_length1,
             count = 0;
 
-        for(var index=0; index<moves.length; index++) {
+        list_length1 = moves.length;
+        for(var index=0; index<list_length1; index++) {
           moveI = i + moves[index][0];
           moveJ = j + moves[index][1];
           if (moveI < maxI && moveI >=0 && moveJ < maxJ && moveJ >= 0) {
@@ -40,9 +42,11 @@ angular.module('tourKnightAngularjsApp')
       };
 
     var iterBoard = function(func) {
-        var indexI, indexJ;
-        for(indexI=0; indexI<$scope.board.length; indexI++) {
-          for(indexJ=0; indexJ<$scope.board[indexI].length; indexJ++) {
+        var indexI, indexJ, list_length1, list_length2;
+        list_length1 = $scope.board.length;
+        for(indexI=0; indexI<list_length1; indexI++) {
+          list_length2 = $scope.board[indexI].length;
+          for(indexJ=0; indexJ<list_length2; indexJ++) {
             func(indexI, indexJ);
           }
         }
@@ -116,6 +120,7 @@ angular.module('tourKnightAngularjsApp')
             doneMovesLength=$scope.doneMoves.length,
             index=0,
             lastMove = doneMovesLength ? $scope.doneMoves[doneMovesLength-1] : undefined,
+            list_length = moves.length,
             updateValue,
             updateI,
             updateJ;
@@ -140,7 +145,7 @@ angular.module('tourKnightAngularjsApp')
           $scope.board[i][j].clickable = true;
 
           // update euristic values of other positions
-          for (index=0; index<moves.length; index++) {
+          for (index=0; index<list_length; index++) {
             updateI = i + moves[index][0];
             updateJ = j + moves[index][1];
             if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
@@ -180,7 +185,7 @@ angular.module('tourKnightAngularjsApp')
 
             // increment near positions of unclicked 
             if (lastMove) {
-              for (index=0; index<moves.length; index++) {
+              for (index=0; index<list_length; index++) {
                 updateI = i + moves[index][0];
                 updateJ = j + moves[index][1];
                 if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
@@ -198,7 +203,7 @@ angular.module('tourKnightAngularjsApp')
               $scope.board[i][j].checked = true;
               $scope.board[i][j].clickable = true;
 
-              for (index=0; index<moves.length; index++) {
+              for (index=0; index<list_length; index++) {
                 updateI = i + moves[index][0];
                 updateJ = j + moves[index][1];
                 if (updateI < $scope.maxI && updateI >= 0 && updateJ < $scope.maxJ && updateJ >= 0) {
