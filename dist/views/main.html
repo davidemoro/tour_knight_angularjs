@@ -1,0 +1,42 @@
+<div class="hero-unit">
+  <h1>Tour knight</h1>
+
+  <div ng-controller="MainCtrl">
+
+    <label for="name">What's your name?</label> <input id="name" name="name" type="text" placeholder="Enter your name" ng-model="name">
+    <span ng-show="name">Hi {{name}}, let's play!!</span>
+
+    <form ng-submit="initBoard()">
+        <p>Enter the board dimension (eg: 8 x 8)</p>
+        <label for="i">Rows</label>
+        <input type="text" id="i" name="j" value="2" ng-model="i">
+
+        <label for="j">Colums</label>
+        <input type="text" id="j" name="j" value="2" ng-model="j">
+        <input type="submit" value="Play">
+    </form>
+
+    <div ng-show="i && j && board">
+        <span>Done {{lenDoneMoves()}} total {{totalMoves()}}</span>
+
+        <!-- Credits chessboard http://designindevelopment.com/css/css3-chess-board -->
+        <table id="chess_board" cellpadding="0" cellspacing="0">
+            <tr ng-repeat="elems in board" class="board">
+                <td ng-repeat="elem in elems" class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}" ng-click="elem.clickable && clickElem(elem.i, elem.j)">
+                    <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked">
+                </td>
+            </tr>
+        </table>
+
+        <strong ng-show="win()">You win!</strong>
+
+        <div ng-show="doneMoves.length">
+            <h2>Done moves</h2>
+            <ul ng-repeat="move in doneMoves">
+                <li>{{move[0]}}, {{move[1]}}</li>
+            </ul>
+        </div>
+    </div>
+
+  </div>
+</div>
