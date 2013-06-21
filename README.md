@@ -7,3 +7,8 @@ Tests
 -----
 
 $ grunt test
+
+Online demo
+-----------
+
+See it in action: http://davidemoro.github.io/tour_knight_angularjs

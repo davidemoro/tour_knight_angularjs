@@ -28,7 +28,7 @@
     "grunt-ngmin": "~0.0.2"
   },
   "scripts": {
-    "test": "node_modules/yeoman/node_modules/grunt/bin/grunt test"
+    "test": "grunt test"
   },
   "engines": {
     "node": ">=0.8.0"
