@@ -1,17 +1,14 @@
-Tour knight's problem
-=====================
+# Tour knight's problem [![Build Status](https://api.travis-ci.org/davidemoro/tour_knight_angularjs.png)](https://travis-ci.org/davidemoro/tour_knight_angularjs)
 
-.. image:: https://api.travis-ci.org/davidemoro/tour_knight_angularjs.png
-    :target: https://travis-ci.org/davidemoro/tour_knight_angularjs
 
-Trying angularjs, yeoman, grunt, bower, testing
+First `angularjs` hello world application built with `yeoman`, `grunt`, `bower`, `karma` testing and of course `javascript`.
 
-Tests
------
+## Tests
 
+```
 $ grunt test
+```
 
-Online demo
------------
+## Online demo
 
-See it in action: http://davidemoro.github.io/tour_knight_angularjs
+See it in action: [online demo](http://davidemoro.github.io/tour_knight_angularjs)
