@@ -42,6 +42,7 @@ a {
 #chess_board td.current-true {
     background-color: red !important;
     background: none;
+    font-size: 40px;
 }
 #chess_board tr:nth-child(odd) td:nth-child(even),
 #chess_board tr:nth-child(even) td:nth-child(odd) {
