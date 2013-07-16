@@ -1,5 +1,5 @@
 <div class="hero-unit">
-  <h1>Tour knight</h1>
+  <h1>Knight's tour problem</h1>
 
   <div ng-controller="MainCtrl">
 
@@ -24,6 +24,7 @@
             <tr ng-repeat="elems in board" class="board">
                 <td ng-repeat="elem in elems" class="current-{{elem.current}} clickable-{{elem.clickable}} selected{{elem.value}}" ng-click="elem.clickable && clickElem(elem.i, elem.j)">
                     <input type="checkbox" name="ij" id="{{elem.i}}_{{elem.j}}" ng-model="elem.checked">
+                    <span ng-show="elem.current">&#9822;</span>
                 </td>
             </tr>
         </table>
