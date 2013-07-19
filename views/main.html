@@ -33,7 +33,11 @@
             </tr>
         </table>
 
-        <strong ng-show="win()">You win!</strong>
+        <div ng-show="win()">
+            <strong>You win!</strong>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/1dKo2Dk" data-text="Hey folks, I solved the knight's tour problem! And you? (built with @angularjs)" data-via="davidemoro" data-hashtags="chess">Tweet</a>
+              <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
 
         <div ng-show="doneMoves.length">
             <h2>Done moves</h2>
